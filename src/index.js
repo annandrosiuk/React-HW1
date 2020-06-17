@@ -122,6 +122,89 @@ ReactDOM.render(
           );
         })}
     </ul>
+
+    <form className='form'
+      onSubmit={(event) => {
+        event.preventDefault();
+        const payload = {
+          name: event.target.name.value,
+          password: event.target.password.value,
+          plan: event.target.plan.value,
+          newsletter: event.target.newsletter.checked,
+        };
+
+        fetch('https://postman-echo.com/post',
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+              'Access-Control-Allow-Credentials': 'true',
+              'Access-Control-Allow-Headers': '*'
+            },
+            mode: 'no-cors',
+            referrerPolicy: 'no-referrer',
+            body: JSON.stringify(payload)
+          })
+          .then(console.log)
+      }}
+    >
+      <div className="form__wrapper">
+        <label htmlFor="name"> Name: </label>
+        <input
+          type="text"
+          id="name"
+          placeholder='Ann'
+          required
+        />
+
+        <label htmlFor="password"> Password: </label>
+        <input
+          type="password"
+          minLength='4'
+          id="password"
+          placeholder='Enter password'
+          required
+        />
+      </div>
+
+      <div className="form__wrapper">
+        <div>
+          <label htmlFor="basic">Basic plan</label>
+          <input
+            type="radio"
+            value='basic'
+            id="basic"
+            name="plan"
+            defaultChecked
+            onChange={(event) => event.target.defaultChecked = !event.target.defaultChecked}
+          />
+        </div>
+        <div>
+          <label htmlFor="premium">Premium plan</label>
+          <input
+            type="radio"
+            value='premium'
+            id="premium"
+            name='plan'
+            onChange={(event) => event.target.defaultChecked = !event.target.defaultChecked}
+          />
+        </div>
+      </div>
+
+      <div>
+        <input
+          type="checkbox"
+          id="newsletter"
+          defaultChecked
+          onChange={(event) => event.target.defaultChecked = !event.target.defaultChecked}
+        />
+        <label htmlFor="newsletter">Subscribe at newsletter</label>
+      </div>
+      <button type='submit'>Buy</button>
+    </form>
+
   </React.StrictMode>,
   document.getElementById('root')
 );
