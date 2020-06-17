@@ -6,7 +6,11 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ul>
+      <li>George Washington</li>
+      <li>John Adams</li>
+      <li>Thomas Jefferson</li>
+    </ul>
   </React.StrictMode>,
   document.getElementById('root')
 );
