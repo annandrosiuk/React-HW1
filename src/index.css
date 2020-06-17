@@ -16,3 +16,8 @@ ul li:first-child::first-letter {
   color: #aaa;
   font-weight: bold;
 }
+
+.events li > * {
+  display: block;
+  margin: 15px 0;
+}
